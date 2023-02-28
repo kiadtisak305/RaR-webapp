@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 import { ref } from "vue";
 import {
     getAuth,
@@ -12,10 +13,10 @@ const email = ref("");
 const password = ref("");
 const visible = ref(false);
 const rules = ref({
-    email: v => !!(v || '').match(/@/) || 'กรุณาป้อน e-mail',
-    required: value => !!value || 'กรุณาป้อนรหัสผ่าน',
+    email: v => !!(v || '').match(/@/) || 'กรุณากรอก e-mail',
+    required: value => !!value || 'กรุณากรอกรหัสผ่าน',
     length: len => v => (v || '').length >= len || `รหัสผ่านต้องมีความยาว ${len} ตัวขึ้นไป`,
-    password: v => !!(v || '').match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/) || 'รหัสผ่านต้องประกอบด้วย อักขระพิมพ์ใหญ่-เล็ก และตัวเลข',
+    /* password: v => !!(v || '').match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/) || 'รหัสผ่านต้องประกอบด้วย อักขระพิมพ์ใหญ่-เล็ก และตัวเลข', */
 })
 
 function login() {
@@ -31,11 +32,25 @@ function login() {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode + errorMessage);
+            switch (errorCode) {
+                case 'auth/invalid-email':
+                    alert("กรุณากรอก E-mail")
+                    break;
+                case 'auth/user-not-found':
+                    alert("ไม่พบบัญชีผู้ใช้นี้")
+                    break;
+                case 'auth/internal-error':
+                    alert("กรุณากรอกรหัสผ่าน")
+                    break;
+                case 'auth/wrong-password':
+                    alert("กรุณากรอกรหัสผ่านที่ถูกต้อง")
+                    break;
+
+                default:
+                    alert(errorMessage)
+            }
+            return
         });
-}
-function register() {
-    router.push("register");
 }
 
 function googlelogin() {
@@ -64,10 +79,6 @@ function googlelogin() {
             // ...
         });
 }
-
-/* function resetpassword() {
-    router.push("reset");
-} */
 </script>
 
 <template>
@@ -76,21 +87,33 @@ function googlelogin() {
 
             <div class="text-subtitle-1 text-medium-emphasis">Account</div>
 
-            <v-text-field density="compact" placeholder="Email address" prepend-inner-icon="mdi-email-outline"
-                variant="outlined" v-model="email" :rules="[rules.email]"></v-text-field>
+            <v-text-field 
+                density="compact" 
+                placeholder="Email address" 
+                prepend-inner-icon="mdi-email-outline"
+                variant="outlined" 
+                v-model="email" 
+                :rules="[rules.email]">
+            </v-text-field>
 
             <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
                 Password
-<!--                 <v-btn class="text-caption" color="blue" variant="plain" @click="resetpassword()">
-                    Reset password?
-                </v-btn> -->
 
+                <router-link to="/reset" class="text-caption">Reset password?</router-link>
             </div>
 
-            <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'" :type="visible ? 'text' : 'password'"
-                density="compact" placeholder="Enter your password" prepend-inner-icon="mdi-lock-outline" variant="outlined"
-                @click:append-inner="visible = !visible" v-model="password"
-                :rules="[rules.required, rules.password, rules.length(8)]"></v-text-field>
+            <v-text-field 
+                :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'" 
+                :type="visible ? 'text' : 'password'"
+                density="compact" 
+                placeholder="Enter your password" 
+                prepend-inner-icon="mdi-lock-outline" 
+                variant="outlined"
+                @click:append-inner="visible = !visible" 
+                @keyup.enter="login()" 
+                v-model="password"
+                :rules="[rules.required, rules.password, rules.length(6)]">
+            </v-text-field>
 
             <v-btn block class="mb-8" color="blue" size="large" variant="tonal" @click="login()">
                 Login
@@ -104,9 +127,7 @@ function googlelogin() {
             </v-btn>
 
             <v-card-text class="text-center">
-                <v-btn color="blue" variant="plain" @click="register()">
-                    Register
-                </v-btn>
+                <router-link to="/register">Create an account.</router-link>
             </v-card-text>
         </v-card>
     </div>
