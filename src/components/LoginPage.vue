@@ -65,7 +65,7 @@ function googlelogin() {
             const user = result.user;
             // IdP data available using getAdditionalUserInfo(result)
             console.log("token = " + token + " " + user);
-            router.push("home");
+            router.push("้home");
             // ...
         }).catch((error) => {
             // Handle Errors here.
