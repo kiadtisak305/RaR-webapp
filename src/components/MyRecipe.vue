@@ -1,17 +1,5 @@
 <script setup>
-import { ref } from 'vue';
 
-const loaded = ref(false);
-const loading = ref(false);
-
-function onClick() {
-    loading.value = ref(true);
-
-    setTimeout(() => {
-        loading.value = false
-        loaded.value = true
-    }, 2000)
-}
 </script>
 
 <template>
@@ -21,7 +9,7 @@ function onClick() {
 
             <v-app-bar color="#e3f988" prominent>
                 <div class="title">
-                    <v-app-bar-title>สูตรอาหาร</v-app-bar-title>
+                    <v-app-bar-title>สูตรอาหารของฉัน</v-app-bar-title>
                 </div>
                 <v-spacer></v-spacer>
                 <v-menu>
@@ -44,10 +32,9 @@ function onClick() {
                 <v-divider></v-divider>
                 <v-list density="compact" nav>
                     <v-list-item prepend-icon="mdi-home" title="สูตรอาหาร" value="recipe" to="/recipe"></v-list-item>
-                    <v-list-item prepend-icon="mdi-plus" title="เพิ่มสูตรอาหาร" value="addrecipe"
-                        to="/addrecipe"></v-list-item>
-                    <v-list-item prepend-icon="mdi-format-list-bulleted" title="สูตรอาหารของฉัน" value="myrecipe"
-                        to="/myrecipe"></v-list-item>
+                    <v-list-item prepend-icon="mdi-plus" title="เพิ่มสูตรอาหาร" value="addrecipe" to="/addrecipe"></v-list-item>
+                    <v-list-item prepend-icon="mdi-format-list-bulleted" title="สูตรอาหารของฉัน"
+                        value="myrecipe" to="/myrecipe"></v-list-item>
                 </v-list>
                 <template v-slot:append>
                     <v-list density="compact" nav>
@@ -57,17 +44,7 @@ function onClick() {
                 </template>
             </v-navigation-drawer>
             <v-main>
-                <div class="search">
-                    <v-card class="mx-auto" color="grey-lighten-3" max-width="400">
-                        <v-card-text>
-                            <v-text-field :loading="loading" density="compact" variant="solo" label="Search templates"
-                                append-inner-icon="mdi-magnify" single-line hide-details
-                                @click:append-inner="onClick"></v-text-field>
-                        </v-card-text>
-                    </v-card>
-                </div>
-
-
+                <h1>hi</h1>
             </v-main>
         </v-layout>
     </v-card>
