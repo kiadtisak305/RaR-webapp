@@ -18,14 +18,6 @@
         >
       </v-list>
     </div>
-
-    <template v-slot:append>
-      <v-list >
-        <v-list-item class="text" style="font-size: 20px;" prepend-icon="mdi-keyboard-backspace" value="home" to="/home">
-          กลับไปหน้าหลัก
-        </v-list-item>
-      </v-list>
-    </template>
   </v-navigation-drawer>
 </template>
 

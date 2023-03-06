@@ -35,7 +35,7 @@ async function login() {
       // Signed in
       const user = userCredential.user
       console.log('User = ' + user)
-      router.push('home')
+      router.push('recipe')
 
       // ...
     })
@@ -78,7 +78,7 @@ function googlelogin() {
       const user = result.user
       // IdP data available using getAdditionalUserInfo(result)
       console.log('token = ' + token + ' ' + user)
-      router.push('home')
+      router.push('recipe')
       // ...
     })
     .catch((error) => {
