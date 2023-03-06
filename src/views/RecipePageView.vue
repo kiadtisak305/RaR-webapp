@@ -44,7 +44,7 @@ const model = null
 </script>
 
 <template>
-  <v-layout>
+  <v-layout class="body">
     <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->
     <AppBar />
     <Navigation />
@@ -79,14 +79,8 @@ const model = null
       </v-sheet>
 
       <!--*************************************** รายการอาหาร ****************************************-->
-      <v-card
-        class="mx-auto"
-        elevation="15"
-        max-width="1200"
-        color="#bfc1c2 "
-        style="margin-top: 2rem"
-      >
-        <v-container>
+   
+        <v-container class="container">
           <v-row>
             <v-col cols="12" md="3" v-for="list in allRecipe" :key="list.data.status">
               <v-card class="mx-auto" elevation="15" @click="viewRecipeDetail(list.id)">
@@ -110,7 +104,7 @@ const model = null
             </v-col>
           </v-row>
         </v-container>
-      </v-card>
+
     </v-main>
     <!--************************************ Main End *****************************************-->
   </v-layout>
@@ -119,10 +113,18 @@ const model = null
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
 
-.text {
-  font-family: 'Pattaya', sans-serif;
-  font-size: 18px;
-  color: rgb(255, 255, 255);
+.body {
+  background-image: url(@/assets/bg.jpg);
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: top center;
+}
+
+.container{
+  margin-top: 4rem;
+  margin-bottom: 6rem;
 }
 .text1 {
   font-family: 'Pattaya', sans-serif;

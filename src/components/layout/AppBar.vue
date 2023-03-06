@@ -30,17 +30,18 @@ function logout() {
 </script>
 
 <template>
-  <v-app-bar color="#b6130a" prominent>
+  <v-app-bar color="#b6130a" height="100" prominent>
     <div class="title">
-      <v-app-bar-title>
-        <h2>Attarod Food</h2>
-      </v-app-bar-title>
+      <v-avatar color="white" size="80"
+        ><img src="@/assets/logoapp.png" width="170" height="170" />
+      </v-avatar>
+        <h1>Attarod Food</h1>
     </div>
     <v-spacer></v-spacer>
     <v-menu min-width="100px" rounded>
       <template v-slot:activator="{ props }">
-        <v-btn icon v-bind="props">
-          <v-avatar>
+        <v-btn icon v-bind="props" style="margin-right: 2rem">
+          <v-avatar size="48">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5rzPuIgpTsSHVb4gnlLzfZINVJY0tZ6g7BiDSbQg&s"
               alt=""
@@ -64,13 +65,15 @@ function logout() {
             <div class="textmanu" style="margin-left: 1rem">
               <h3>{{ displayName }}</h3>
               <p class="text-caption mt-1">
-                {{ email }}
+                <a>{{ email }}</a>
               </p>
             </div>
           </div>
-          <div class="textmanu1 mx-auto">
+          <div>
             <v-divider class="my-3"></v-divider>
-            <v-btn rounded prepend-icon="mdi-logout" @click="logout()"><h3>ออกจากระบบ</h3></v-btn>
+            <v-btn class="textmanu1" rounded prepend-icon="mdi-logout" @click="logout()">
+              <p>ออกจากระบบ</p>
+            </v-btn>
           </div>
         </v-card-text>
       </v-card>
@@ -79,25 +82,34 @@ function logout() {
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
 .title {
-  margin-left: 4rem;
+  margin-left: 5rem;
   font-family: 'Pattaya', sans-serif;
   color: white;
-  text-shadow: 5px 2px rgb(0, 0, 0);
-  word-spacing: 5px;
+  text-shadow: 8px 5px rgb(0, 0, 0);
+  word-spacing: 15px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
-.textmanu{
+h1 {
+  margin-left: 1.2rem;
+}
+.textmanu {
   font-family: 'Pattaya', sans-serif;
   color: white;
 }
-.textmanu1{
+.textmanu1 {
   font-family: 'Pattaya', sans-serif;
   color: white;
-  text-align: center;
+  font-size: 19px;
 }
-img{
-  border: solid 9px rgb(0, 0, 0);
-  border-radius: 10rem;
+a {
+  font-family: 'Pattaya', sans-serif;
+  color: white;
+  font-size: 16px;
+}
+h3 {
+  font-size: 22px;
 }
 </style>

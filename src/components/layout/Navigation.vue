@@ -36,5 +36,6 @@
   font-family: 'Pattaya', sans-serif;
   font-size: 18px;
   color: rgb(255, 255, 255);
+  margin-top: 1rem;
 }
 </style>
