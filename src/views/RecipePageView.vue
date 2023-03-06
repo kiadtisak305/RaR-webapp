@@ -120,6 +120,7 @@ const model = null
   background-repeat: repeat-x;
   background-attachment: fixed;
   background-position: top center;
+  min-height: 710px;
 }
 
 .container{

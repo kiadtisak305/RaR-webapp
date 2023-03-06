@@ -161,7 +161,7 @@ function googlelogin() {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
 .body {
-  background-image: url(@/assets/bgapp.jpg);
+  background-image: url(@/assets/loginbg.jpg);
   width: 100%;
   height: 100%;
   background-repeat: repeat-x;
@@ -181,7 +181,7 @@ a{
 }
 .card{
   margin-top: 7rem;
-  margin-bottom: 6.5rem;
+  margin-bottom: 5.5rem;
 }
 .text{
   font-family: 'Pattaya', sans-serif;

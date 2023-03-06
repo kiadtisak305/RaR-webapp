@@ -18,6 +18,7 @@ const recipe = ref({
   foodname: '',
   instructions: '',
   category: '',
+  categoryother: '',
   linkurl: '',
   status: '',
   ingredient1: '',
@@ -100,17 +101,16 @@ async function updateRecipe() {
 </script>
 
 <template>
-  <v-card>
+  <v-card class="body">
     <v-layout>
-      
       <AppBar />
       <Navigation />
       <!--************************************ Main Start *****************************************-->
       <v-main>
         <div class="Table">
-          <v-card class="mx-auto px-9 py-15" max-width="auto" min-height="649" max-height="auto">
+          <v-card class="mx-auto px-9 py-15" elevation="15" max-width="1000" min-height="649" max-height="auto">
             <v-table>
-              <thead>
+              <thead class="head">
                 <tr>
                   <th class="text-center">รูปภาพ</th>
                   <th class="text-center">รายการอาหาร</th>
@@ -155,43 +155,113 @@ async function updateRecipe() {
                   <v-container>
                     <div class="forminput">
                       <v-form>
-                        <v-row>
-                          <v-col>
-                            <v-text-field
-                              prepend-icon="mdi-account"
-                              readonly
-                              variant="plain"
-                              v-model="recipe.useremail"
-                            ></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-select
-                              prepend-icon="mdi-publish"
-                              label="สถานะแชร์"
-                              :items="['ส่วนตัว', 'สาธารณะ']"
-                              variant="outlined"
-                              v-model="recipe.status"
-                            ></v-select>
-                          </v-col>
-                          <v-col>
-                            <v-select
-                              label="กรุณาเลือกชนิดอาหาร"
-                              :items="[
-                                'แกง',
-                                'ผัด',
-                                'ยำ',
-                                'ทอด',
-                                'ต้ม',
-                                'ปิ้งย่าง',
-                                'เครื่องเคียง'
-                              ]"
-                              variant="outlined"
-                              v-model="recipe.category"
-                            ></v-select>
-                          </v-col>
-                        </v-row>
+                        <div v-if="recipe.status == 'ส่วนตัว'">
+                          <v-row>
+                            <v-col>
+                              <v-text-field
+                                prepend-icon="mdi-account"
+                                readonly
+                                variant="plain"
+                                v-model="recipe.useremail"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col>
+                              <v-select
+                                prepend-icon="mdi-incognito"
+                                label="สถานะแชร์"
+                                :items="['ส่วนตัว', 'สาธารณะ']"
+                                variant="outlined"
+                                v-model="recipe.status"
+                              ></v-select>
+                            </v-col>
+                          </v-row>
+                        </div>
+                        <div v-else>
+                          <v-row>
+                            <v-col>
+                              <v-text-field
+                                prepend-icon="mdi-account"
+                                readonly
+                                variant="plain"
+                                v-model="recipe.useremail"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col>
+                              <v-select
+                                prepend-icon="mdi-publish"
+                                label="สถานะแชร์"
+                                :items="['ส่วนตัว', 'สาธารณะ']"
+                                variant="outlined"
+                                v-model="recipe.status"
+                              ></v-select>
+                            </v-col>
+                          </v-row>
+                        </div>
+                        <div v-if="recipe.category == 'อื่นๆ'">
+                          <v-row
+                            ><v-col>
+                              <v-select
+                                prepend-icon="mdi-select"
+                                label="กรุณาเลือกชนิดอาหาร"
+                                :items="[
+                                  'แกง',
+                                  'ผัด',
+                                  'ยำ',
+                                  'ทอด',
+                                  'ต้ม',
+                                  'ปิ้งย่าง',
+                                  'เครื่องเคียง',
+                                  'อื่นๆ'
+                                ]"
+                                variant="outlined"
+                                v-model="recipe.category"
+                              ></v-select>
+                            </v-col>
+                            <v-col>
+                              <v-text-field
+                                prepend-icon="mdi-pencil"
+                                label="รายละเอียดชนิดอาหาร"
+                                type="text"
+                                variant="outlined"
+                                v-model="recipe.categoryother"
+                              >
+                              </v-text-field>
+                            </v-col>
+                          </v-row>
+                        </div>
+                        <div v-else>
+                          <v-row>
+                            <v-col>
+                              <v-select
+                                prepend-icon="mdi-select"
+                                label="กรุณาเลือกชนิดอาหาร"
+                                :items="[
+                                  'แกง',
+                                  'ผัด',
+                                  'ยำ',
+                                  'ทอด',
+                                  'ต้ม',
+                                  'ปิ้งย่าง',
+                                  'เครื่องเคียง',
+                                  'อื่นๆ'
+                                ]"
+                                variant="outlined"
+                                v-model="recipe.category"
+                              ></v-select>
+                            </v-col>
+                            <v-col>
+                              <v-text-field
+                                prepend-icon="mdi-lock"
+                                readonly
+                                label="รายละเอียดชนิดอาหาร"
+                                type="text"
+                                variant="plain"
+                                v-model="recipe.categoryother"
+                              >
+                              </v-text-field>
+                            </v-col>
+                          </v-row>
+                        </div>
                         <v-row>
                           <v-col>
                             <v-text-field
@@ -430,6 +500,23 @@ async function updateRecipe() {
 </template>
 
 <style scoped>
+.body {
+  background-image: url(@/assets/bg.jpg);
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: top center;
+  font-family: 'Pattaya', sans-serif;
+}
+.Table{
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+  font-size: 19px;
+}
+.head{
+  font-size: 26px;
+}
 .btnedit {
   margin-right: 0.5rem;
 }
@@ -437,6 +524,8 @@ async function updateRecipe() {
   min-width: 700px;
   padding: 2rem;
   text-align: center;
+  font-family: 'Pattaya', sans-serif;
+  font-size: 22px;
 }
 .btndelete {
   margin-left: 0.5rem;

@@ -12,7 +12,9 @@ if (user !== null) {
   displayName.value = user.displayName
   email.value = user.email
 }
-
+function toHome() {
+  router.push('home')
+}
 function logout() {
   const auth = getAuth()
   signOut(auth)
@@ -32,10 +34,12 @@ function logout() {
 <template>
   <v-app-bar color="#b6130a" height="100" prominent>
     <div class="title">
-      <v-avatar color="white" size="80"
-        ><img src="@/assets/logoapp.png" width="170" height="170" />
-      </v-avatar>
-        <h1>Attarod Food</h1>
+      <v-btn class="btn" size="large"  icon @click="toHome()">
+        <v-avatar color="white" size="75" 
+          ><img src="@/assets/logoapp.png" width="150" height="150" />
+        </v-avatar>
+      </v-btn>
+      <h1>Attarod Food</h1>
     </div>
     <v-spacer></v-spacer>
     <v-menu min-width="100px" rounded>
@@ -83,17 +87,17 @@ function logout() {
 
 <style scoped>
 .title {
-  margin-left: 5rem;
+  margin-left: 3.5rem;
   font-family: 'Pattaya', sans-serif;
   color: white;
-  text-shadow: 8px 5px rgb(0, 0, 0);
+  text-shadow: 8px 6px rgb(0, 0, 0);
   word-spacing: 15px;
   display: flex;
   align-items: center;
   justify-items: center;
 }
 h1 {
-  margin-left: 1.2rem;
+  margin-left: 2rem;
 }
 .textmanu {
   font-family: 'Pattaya', sans-serif;
@@ -111,5 +115,8 @@ a {
 }
 h3 {
   font-size: 22px;
+}
+.btn{
+  margin-bottom: 1.4rem;
 }
 </style>
