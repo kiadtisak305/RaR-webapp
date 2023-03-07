@@ -127,7 +127,7 @@ async function updateRecipe() {
                   </td>
                   <td>
                     <div>
-                      <v-btn class="btnedit" variant="text" @click="editRecipe(recipelist)">
+                      <v-btn icon class="btnedit" variant="text" @click="editRecipe(recipelist)">
                         <Icon
                           icon="material-symbols:edit-square-outline"
                           color="blue"
@@ -136,6 +136,7 @@ async function updateRecipe() {
                         />
                       </v-btn>
                       <v-btn
+                      icon
                         class="btndelete"
                         variant="text"
                         @click="deleteMenu(recipelist.id, index)"

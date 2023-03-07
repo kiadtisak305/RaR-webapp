@@ -16,7 +16,6 @@ if (user !== null) {
   displayName.value = user.displayName
   email.value = user.email
 }
-
 const router = useRouter()
 const allRecipe = ref([])
 
@@ -79,32 +78,25 @@ const model = null
       </v-sheet>
 
       <!--*************************************** รายการอาหาร ****************************************-->
-   
-        <v-container class="container">
-          <v-row>
-            <v-col cols="12" md="3" v-for="list in allRecipe" :key="list.data.status">
-              <v-card class="mx-auto" elevation="15" @click="viewRecipeDetail(list.id)">
-                <v-img class="align-end text-white" height="180" :src="list.data.linkurl" cover>
-                </v-img>
-                <v-card-title class="text1">{{ list.data.foodname }}</v-card-title>
-                <v-card-subtitle class="text2 me-1"> {{ list.data.useremail }} </v-card-subtitle>
 
-                <v-card-text>
-                  <div class="text3">ประเภทอาหาร: {{ list.data.category }}</div>
+      <v-container class="container">
+        <v-row>
+          <v-col cols="12" md="3" v-for="list in allRecipe" :key="list.data.status">
+            <v-card class="mx-auto" elevation="15" @click="viewRecipeDetail(list.id)">
+              <v-img class="align-end text-white" height="180" :src="list.data.linkurl" cover>
+              </v-img>
+              <v-card-title class="text1">{{ list.data.foodname }}</v-card-title>
+              <v-card-subtitle class="text2 me-1"> {{ list.data.useremail }} </v-card-subtitle>
 
-                  <div></div>
-                </v-card-text>
+              <v-card-text>
+                <div class="text3">ประเภทอาหาร: {{ list.data.category }}</div>
 
-                <v-card-actions>
-                  <v-btn color="orange">  </v-btn>
-
-                  <v-btn color="orange">  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-
+                <div></div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-main>
     <!--************************************ Main End *****************************************-->
   </v-layout>
@@ -123,7 +115,7 @@ const model = null
   min-height: 710px;
 }
 
-.container{
+.container {
   margin-top: 4rem;
   margin-bottom: 6rem;
 }
@@ -132,10 +124,10 @@ const model = null
   font-size: 22px;
   color: rgb(0, 0, 0);
 }
-.text2{
+.text2 {
   font-family: 'Pattaya', sans-serif;
 }
-.text3{
+.text3 {
   font-family: 'Pattaya', sans-serif;
   font-size: 16px;
 }
@@ -151,7 +143,7 @@ const model = null
   width: 200px;
   height: 150px;
 }
-.icon{
+.icon {
   size: 28px;
 }
 </style>

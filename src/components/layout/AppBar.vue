@@ -12,9 +12,6 @@ if (user !== null) {
   displayName.value = user.displayName
   email.value = user.email
 }
-function toHome() {
-  router.push('home')
-}
 function logout() {
   const auth = getAuth()
   signOut(auth)
@@ -33,12 +30,10 @@ function logout() {
 
 <template>
   <v-app-bar color="#b6130a" height="100" prominent>
-    <div class="title">
-      <v-btn class="btn" size="large"  icon @click="toHome()">
+    <div class="title"> 
         <v-avatar color="white" size="75" 
           ><img src="@/assets/logoapp.png" width="150" height="150" />
         </v-avatar>
-      </v-btn>
       <h1>Attarod Food</h1>
     </div>
     <v-spacer></v-spacer>
